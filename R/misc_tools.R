@@ -41,31 +41,43 @@
 
 ## Loop timer display
 
-    displayprogress <- function(perc,est){
+    displayprogress <- function(perc,est=NULL){
       msg = format(round(perc, 1), nsmall = 1)
 
-      if(est > 60){
-        if(est/60 >= 10){
-          est = paste(" ",as.character(format(round(est/60, 1), nsmall = 1)),"m   ",sep="")
+      if(!is.null(est)){
+        if(est > 60){
+          if(est/60 >= 10){
+            est = paste(" ",as.character(format(round(est/60, 1), nsmall = 1)),"m   ",sep="")
+          }else{
+            est = paste("  ",as.character(format(round(est/60, 1), nsmall = 1)),"m   ",sep="")
+          }
         }else{
-          est = paste("  ",as.character(format(round(est/60, 1), nsmall = 1)),"m   ",sep="")
+          if(est >= 10){
+            est = paste(" ",as.character(format(round(est, 1), nsmall = 1)),"s   ",sep="")
+          }else{
+            est = paste("  ",as.character(format(round(est, 1), nsmall = 1)),"s   ",sep="")
+          }
         }
-      }else{
-        if(est >= 10){
-          est = paste(" ",as.character(format(round(est, 1), nsmall = 1)),"s   ",sep="")
-        }else{
-          est = paste("  ",as.character(format(round(est, 1), nsmall = 1)),"s   ",sep="")
+
+        if(perc == 100){
+          cat("\r",paste("Progress ",msg,"%", sep=""))
+          cat("\r"," ")
+        } else if (perc < 10){
+          cat("\r",paste("Progress   ",msg,"% \tEstimated time remaining ",est, sep=""))
+        } else {
+          cat("\r",paste("Progress  ",msg,"% \tEstimated time remaining ",est, sep=""))
+        }
+      } else{
+        if(perc == 100){
+          cat("\r",paste("Progress ",msg,"%", sep=""))
+          cat("\r"," ")
+        } else if (perc < 10){
+          cat("\r",paste("Progress   ",msg,"%", sep=""))
+        } else {
+          cat("\r",paste("Progress  ",msg,"%", sep=""))
         }
       }
 
-      if(perc == 100){
-        cat("\r",paste("Progress ",msg,"%", sep=""))
-        cat("\r"," ")
-      } else if (perc < 10){
-        cat("\r",paste("Progress   ",msg,"% \tEstimated time remaining ",est, sep=""))
-      } else {
-        cat("\r",paste("Progress  ",msg,"% \tEstimated time remaining ",est, sep=""))
-      }
     }
 
 
