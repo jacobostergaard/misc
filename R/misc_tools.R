@@ -9,6 +9,7 @@
       for(i in dev.list()) dev.off(which=i)
       keep = as.list(match.call())
       rm(list=setdiff(ls(envir = .GlobalEnv), keep), envir = .GlobalEnv)
+      assign("savePDF", FALSE, envir = .GlobalEnv)
       cat("\014")  # Clear console
     }
 
