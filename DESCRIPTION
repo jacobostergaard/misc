@@ -1,7 +1,7 @@
 Package: misc
 Type: Package
-Title: Various miscellaneous tools
-Version: 0.0.0.9000
+Title: Miscellaneous tools
+Version: 1.0
 Date: 2017-01-20
 Authors@R: person("Jacob", "Ostergaard", email = "ostergaard@math.ku.dk", role = c("aut", "cre"))
 Description: A collection of nice-to-have tools
